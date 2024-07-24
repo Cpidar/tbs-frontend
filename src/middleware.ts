@@ -1,6 +1,8 @@
 import { Region } from "@medusajs/medusa"
 import { notFound } from "next/navigation"
 import { NextRequest, NextResponse } from "next/server"
+import { i18nRouter } from 'next-i18n-router';
+import i18nConfig from './i18nConfig';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL
 const DEFAULT_REGION = process.env.NEXT_PUBLIC_DEFAULT_REGION || "us"
@@ -90,6 +92,7 @@ export async function middleware(request: NextRequest) {
   const checkoutStep = searchParams.get("step")
   const onboardingCookie = request.cookies.get("_medusa_onboarding")
   const cartIdCookie = request.cookies.get("_medusa_cart_id")
+  // I18nMiddleware (request)
 
   const regionMap = await getRegionMap()
 

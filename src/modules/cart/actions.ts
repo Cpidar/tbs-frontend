@@ -61,7 +61,6 @@ export async function getOrSetCart(countryCode: string) {
 
 export async function retrieveCart() {
   const cartId = cookies().get("_medusa_cart_id")?.value
-
   if (!cartId) {
     return null
   }
@@ -85,7 +84,6 @@ export async function addToCart({
   countryCode: string
 }) {
   const cart = await getOrSetCart(countryCode).then((cart) => cart)
-
   if (!cart) {
     return "Missing cart ID"
   }

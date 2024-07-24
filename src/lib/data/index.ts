@@ -306,6 +306,21 @@ export async function updateCustomer(data: StorePostCustomersCustomerReq) {
     .catch((err) => medusaError(err))
 }
 
+export async function customerResetPassword({ email, token, password }: {
+  email: string
+  token: string
+  password: string
+}) {
+  return medusaClient.customers
+    .resetPassword({
+      email,
+      password,
+      token,
+    })
+    .then(({ customer }) => customer)
+    .catch((err) => medusaError(err))
+}
+
 export async function addShippingAddress(
   data: StorePostCustomersCustomerAddressesReq
 ) {
@@ -442,7 +457,7 @@ export const getProductByHandle = cache(async function (
   handle: string
 ): Promise<{ product: PricedProduct }> {
   const headers = getMedusaHeaders(["products"])
-
+  handle = handle === decodeURIComponent(handle) ? handle : decodeURI(handle)
   const product = await medusaClient.products
     .list({ handle }, headers)
     .then(({ products }) => products[0])
@@ -491,7 +506,7 @@ export const getProductsList = cache(async function ({
 
   const transformedProducts = products.map((product) => {
     return transformProductPreview(product, region!)
-  })
+  }).filter(p => p.inStock > 0)
 
   const nextPage = count > pageParam + 1 ? pageParam + 1 : null
 
@@ -519,6 +534,7 @@ export const getProductsListWithSort = cache(
     queryParams?: StoreGetProductsParams
   }> {
     const limit = queryParams?.limit || 12
+    console.log(queryParams)
 
     const {
       response: { products, count },
@@ -538,7 +554,6 @@ export const getProductsListWithSort = cache(
     const nextPage = count > pageParam + limit ? pageParam + limit : null
 
     const paginatedProducts = sortedProducts.slice(pageParam, pageParam + limit)
-
     return {
       response: {
         products: paginatedProducts,
@@ -549,6 +564,7 @@ export const getProductsListWithSort = cache(
     }
   }
 )
+
 
 export const getHomepageProducts = cache(async function getHomepageProducts({
   collectionHandles,
@@ -677,6 +693,40 @@ export const listCategories = cache(async function () {
     .catch((err) => {
       throw err
     })
+})
+
+export const listMainCategories = cache(async function () {
+  const headers = {
+    next: {
+      tags: ["collections"],
+    },
+  } as Record<string, any>
+
+  return medusaClient.productCategories
+    .list({ expand: "category_children", parent_category_id: "pcat_01J2JMTPT0KDSCWNA4PNYTXWCS" }, headers)
+    .then(({ product_categories }) => product_categories)
+    .catch((err) => {
+      throw err
+    })
+})
+
+export const getParentCategoriesList = cache(async function (
+  offset: number = 0,
+  limit: number = 100
+): Promise<{
+  product_categories: ProductCategoryWithChildren[]
+  count: number
+}> {
+  const { product_categories, count } = await medusaClient.productCategories
+    .list({ limit, offset }, { next: { tags: ["categories"] } })
+    .catch((err) => {
+      throw err
+    })
+
+  return {
+    product_categories,
+    count,
+  }
 })
 
 export const getCategoriesList = cache(async function (

@@ -30,11 +30,13 @@ const Item = ({ item, region, type = "full" }: ItemProps) => {
   const changeQuantity = async (quantity: number) => {
     setError(null)
     setUpdating(true)
+    console.log(item.id, quantity)
 
     const message = await updateLineItem({
       lineId: item.id,
       quantity,
     })
+    .then(console.log)
       .catch((err) => {
         return err.message
       })

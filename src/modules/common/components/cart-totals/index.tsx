@@ -5,12 +5,14 @@ import { InformationCircleSolid } from "@medusajs/icons"
 import { Cart, Order } from "@medusajs/medusa"
 import { Tooltip } from "@medusajs/ui"
 import React from "react"
+import { useTranslation } from "react-i18next"
 
 type CartTotalsProps = {
   data: Omit<Cart, "refundable_amount" | "refunded_total"> | Order
 }
 
 const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
+  const { t } = useTranslation('common')
   const {
     subtotal,
     discount_total,
@@ -33,7 +35,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
       <div className="flex flex-col gap-y-2 txt-medium text-ui-fg-subtle ">
         <div className="flex items-center justify-between">
           <span className="flex gap-x-1 items-center">
-            Subtotal
+            {t('text-sub-total')}
             <Tooltip content="Cart total excluding shipping and taxes.">
               <InformationCircleSolid color="var(--fg-muted)" />
             </Tooltip>
@@ -44,7 +46,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
         </div>
         {!!discount_total && (
           <div className="flex items-center justify-between">
-            <span>Discount</span>
+            <span>{t('text-discount')}</span>
             <span
               className="text-ui-fg-interactive"
               data-testid="cart-discount"
@@ -56,7 +58,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
         )}
         {!!gift_card_total && (
           <div className="flex items-center justify-between">
-            <span>Gift card</span>
+            <span>{t('text-gift-card')}</span>
             <span
               className="text-ui-fg-interactive"
               data-testid="cart-gift-card-amount"
@@ -67,13 +69,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
           </div>
         )}
         <div className="flex items-center justify-between">
-          <span>Shipping</span>
+          <span>{t('text-shipping')}</span>
           <span data-testid="cart-shipping" data-value={shipping_total || 0}>
             {getAmount(shipping_total)}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="flex gap-x-1 items-center ">Taxes</span>
+          <span className="flex gap-x-1 items-center ">{t('text-tax')}</span>
           <span data-testid="cart-taxes" data-value={tax_total || 0}>
             {getAmount(tax_total)}
           </span>
@@ -81,7 +83,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ data }) => {
       </div>
       <div className="h-px w-full border-b border-gray-200 my-4" />
       <div className="flex items-center justify-between text-ui-fg-base mb-2 txt-medium ">
-        <span>Total</span>
+        <span>{t('text-total')}</span>
         <span
           className="txt-xlarge-plus"
           data-testid="cart-total"

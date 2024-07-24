@@ -3,7 +3,7 @@
 import { useFormState } from "react-dom"
 
 import Input from "@modules/common/components/input"
-import { LOGIN_VIEW } from "@modules/account/templates/login-template"
+import { LOGIN_VIEW } from "@/modules/account/templates/login-template"
 import { signUp } from "@modules/account/actions"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
@@ -11,13 +11,25 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
+  phone: string
 }
 
-const Register = ({ setCurrentView }: Props) => {
-  const [message, formAction] = useFormState(signUp, null)
+const Register = ({ setCurrentView, phone }: Props) => {
+  const onFormAction = (_currentState: unknown, formData: FormData) => {
+    "use client"
+
+    if (!formData.get("phone")) formData.append("phone", phone)
+    if (!formData.get("email")) formData.append("email", `${phone}@example.com`)
+    return signUp(_currentState, formData)
+  }
+
+  const [message, formAction] = useFormState(onFormAction, null)
 
   return (
-    <div className="max-w-sm flex flex-col items-center" data-testid="register-page">
+    <div
+      className="max-w-sm flex flex-col items-center"
+      data-testid="register-page"
+    >
       <h1 className="text-large-semi uppercase mb-6">
         Become a Medusa Store Member
       </h1>
@@ -49,7 +61,7 @@ const Register = ({ setCurrentView }: Props) => {
             autoComplete="email"
             data-testid="email-input"
           />
-          <Input label="Phone" name="phone" type="tel" autoComplete="tel" data-testid="phone-input" />
+          <Input label="Phone" value={phone} name="phone" type="tel" autoComplete="tel" data-testid="phone-input" hidden />
           <Input
             label="Password"
             name="password"
@@ -77,7 +89,9 @@ const Register = ({ setCurrentView }: Props) => {
           </LocalizedClientLink>
           .
         </span>
-        <SubmitButton className="w-full mt-6" data-testid="register-button">Join</SubmitButton>
+        <SubmitButton className="w-full mt-6" data-testid="register-button">
+          Join
+        </SubmitButton>
       </form>
       <span className="text-center text-ui-fg-base text-small-regular mt-6">
         Already a member?{" "}

@@ -16,12 +16,14 @@ import PaymentContainer from "@modules/checkout/components/payment-container"
 import { setPaymentMethod } from "@modules/checkout/actions"
 import { paymentInfoMap } from "@lib/constants"
 import { StripeContext } from "@modules/checkout/components/payment-wrapper"
+import { useTranslation } from "react-i18next"
 
 const Payment = ({
   cart,
 }: {
   cart: Omit<Cart, "refundable_amount" | "refunded_total"> | null
 }) => {
+  const { t } = useTranslation('common')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [cardBrand, setCardBrand] = useState<string | null>(null)
@@ -112,7 +114,7 @@ const Payment = ({
             }
           )}
         >
-          Payment
+          {t('text-payment-title')}
           {!isOpen && paymentReady && <CheckCircleSolid />}
         </Heading>
         {!isOpen && paymentReady && (
@@ -122,7 +124,7 @@ const Payment = ({
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="edit-payment-button"
             >
-              Edit
+              {t('text-edit')}
             </button>
           </Text>
         )}
@@ -182,7 +184,7 @@ const Payment = ({
               disabled={(isStripe && !cardComplete) || !cart.payment_session}
               data-testid="submit-payment-button"
             >
-              Continue to review
+              {t('text-next')}
             </Button>
           </div>
         ) : (
@@ -196,7 +198,7 @@ const Payment = ({
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Payment method
+                  {t('text-choose-payment')}
                 </Text>
                 <Text className="txt-medium text-ui-fg-subtle" data-testid="payment-method-summary">
                   {paymentInfoMap[cart.payment_session.provider_id]?.title ||

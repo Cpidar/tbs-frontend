@@ -1,4 +1,5 @@
 import Spinner from "@modules/common/icons/spinner"
+import React, { Component } from 'react'
 
 export default function Loading() {
   return (

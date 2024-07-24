@@ -10,6 +10,7 @@ import {
 } from "@lib/data"
 import { Region } from "@medusajs/medusa"
 import ProductTemplate from "@modules/products/templates"
+import ScrollToTop from "@/shared/utils/scrollToTop"
 
 type Props = {
   params: { countryCode: string; handle: string }
@@ -89,7 +90,6 @@ export default async function ProductPage({ params }: Props) {
   if (!region) {
     notFound()
   }
-
   const pricedProduct = await getPricedProductByHandle(params.handle, region)
 
   if (!pricedProduct) {
@@ -97,10 +97,13 @@ export default async function ProductPage({ params }: Props) {
   }
 
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-    />
+    <>
+      <ScrollToTop />
+      <ProductTemplate
+        product={pricedProduct}
+        region={region}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }
