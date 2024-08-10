@@ -71,7 +71,11 @@ const CATEGORIES: SolutionItem[] = [
   },
 ];
 
-export default function DropdownCategories() {
+export default function DropdownCategories({
+  categories,
+}: {
+  categories?: any;
+}) {
   const { t } = useTranslation('common')
   return (
     <div className="DropdownCategories">

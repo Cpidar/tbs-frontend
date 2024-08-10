@@ -5,7 +5,7 @@ import backgroundLineSvg from "@/images/BackgroundLine.svg";
 import Badge from "@/shared/Badge/Badge";
 import Input from "@/shared/Input/Input";
 import ButtonCircle from "@/shared/Button/ButtonCircle";
-import { ArrowSmallRightIcon } from "@heroicons/react/24/solid";
+import { PhoneArrowUpRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 export interface SectionPromo3Props {
@@ -27,29 +27,28 @@ const SectionPromo3: FC<SectionPromo3Props> = ({ className = "lg:pt-10" }) => {
 
         <div className="lg:w-[50%] max-w-lg relative">
           <h2 className="font-semibold text-4xl md:text-5xl">
-            {`Don't miss out on special offers`}
+            {`چرا فروشگاه تابش الکتریک`}
           </h2>
           <span className="block mt-5 text-neutral-500 dark:text-neutral-400">
-            Register to receive news about the latest, savings combos, discount
-            codes...
+          هدف از ایجاد این فروشگاه دسترسی آسان و سریع نسبت به محصولات الکتریکی و اطلاع از قیمت های فروشگاه می باشد .
           </span>
           <ul className="space-y-4 mt-10">
-            <li className="flex items-center space-x-4">
+            <li className="flex items-center">
               <Badge color="purple" name="01" />
-              <span className="font-medium text-neutral-700 dark:text-neutral-300">
-                Savings combos
+              <span className="font-medium text-neutral-700 mr-4 dark:text-neutral-300">
+                پرداخت امن
               </span>
             </li>
-            <li className="flex items-center space-x-4">
+            <li className="flex items-center">
               <Badge name="02" />
-              <span className="font-medium text-neutral-700 dark:text-neutral-300">
-                Freeship
+              <span className="font-medium text-neutral-700 mr-4 dark:text-neutral-300">
+                مشاوره و پشتیبانی رایگان
               </span>
             </li>
-            <li className="flex items-center space-x-4">
+            <li className="flex items-center">
               <Badge color="red" name="03" />
-              <span className="font-medium text-neutral-700 dark:text-neutral-300">
-                Premium magazines
+              <span className="font-medium text-neutral-700 mr-4 dark:text-neutral-300">
+                ارسال رایگان برای سفارشات بالای 5 میلیون تومان
               </span>
             </li>
           </ul>
@@ -57,22 +56,23 @@ const SectionPromo3: FC<SectionPromo3Props> = ({ className = "lg:pt-10" }) => {
             <Input
               required
               aria-required
-              placeholder="Enter your email"
+              placeholder="09130277401"
               type="email"
               rounded="rounded-full"
             />
+            
             <ButtonCircle
               type="submit"
-              className="absolute transform top-1/2 -translate-y-1/2 right-1"
+              className="absolute transform top-1/2 -translate-y-1/2 left-1"
             >
-              <ArrowSmallRightIcon className="w-6 h-6" />
+              <PhoneArrowUpRightIcon className="w-6 h-6" />
             </ButtonCircle>
           </form>
         </div>
 
         <NcImage
           alt=""
-          containerClassName="relative block lg:absolute lg:right-0 lg:bottom-0 mt-10 lg:mt-0 max-w-lg lg:max-w-[calc(50%-40px)]"
+          containerClassName="relative block lg:absolute lg:ltr:right-0 lg:rtl:left-0 lg:bottom-0 mt-10 lg:mt-0 max-w-lg lg:max-w-[calc(50%-40px)]"
           src={rightImgDemo}
           sizes="(max-width: 768px) 100vw, 50vw"
           className=""

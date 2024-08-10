@@ -5,7 +5,9 @@ import { LOGIN_VIEW, Step } from "@/modules/account/templates/login-template"
 import { useTranslation } from "react-i18next"
 import { SubmitHandler, useForm } from "react-hook-form"
 import Image from "next/image"
-import logo from '@/images/logo.svg'
+import logo from "@/images/logo.svg"
+import { ArrowRightIcon } from "@heroicons/react/24/solid"
+
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
   setPhone: (phone: string) => void
@@ -79,8 +81,11 @@ const PageLogin = ({ setCurrentView, setPhone, setEmail }: Props) => {
     // ...
   }
   return (
-    <div className="nc-PageLogin mb-8 lg:mb-10 flex flex-col items-center">
-      <div className="mb-10 sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="nc-PageLogin mb-8 p-5 lg:mb-10 flex flex-col items-center lg:justify-center">
+       <div className="w-full relative flex items-center justify-center">
+        <div className="flex right-0 text-neutral-700 transition-all duration-300 ease-out cursor-pointer fixed lg:absolute">
+          <ArrowRightIcon />
+        </div>
         <Image
           className="mx-auto h-10 w-auto"
           src={logo}
@@ -88,40 +93,44 @@ const PageLogin = ({ setCurrentView, setPhone, setEmail }: Props) => {
           height={200}
           alt="Your Company"
         />
-        {/* <h2 className="mt-6 text-center text-2xl leading-9 tracking-tight text-gray-900">
-          Sign in to your account
-        </h2> */}
       </div>
       <div className="w-full mx-auto space-y-6">
-        {/* FORM */}
-        <form
-          className="grid grid-cols-1 gap-6"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <label className="block">
-            <span className="text-neutral-800 dark:text-neutral-200">
-              {t("text-phone")}
-            </span>
-            <Input
-              type="number"
-              placeholder="09123456789"
-              className="text-left mt-1"
-              {...register("phone", {
-                required: "enter your phone number",
-                pattern: {
-                  value: /((0?9)|(\+?989))\d{9}/g,
-                  message: "enter the valid phone number",
-                },
-              })}
-            />
-          </label>
-          {errors.phone?.message && (
-            <p className="mt-2 text-xs text-red-500 ltr:text-left rtl:text-right">
-              {t(errors.phone.message)}
-            </p>
-          )}
-          <ButtonPrimary type="submit">{t("text-continue")}</ButtonPrimary>
-        </form>
+        <div className="w-full">
+          <h1 className="text-h4 text-neutral-900 text-right w-full mt-4">
+            ورود | ثبت نام
+          </h1>
+          <p className="text-xs text-neutral-700 mt-4 text-right w-full">
+            سلام!
+          </p>
+          <p className="text-xs text-neutral-700 mb-4 text-right w-full">
+            لطفا شماره موبایل خود را وارد کنید
+          </p>
+          {/* FORM */}
+          <form className="" onSubmit={handleSubmit(onSubmit)}>
+            <label className="block w-full">
+              <Input
+                type="number"
+                placeholder="09123456789"
+                className="text-left mt-1"
+                {...register("phone", {
+                  required: "enter your phone number",
+                  pattern: {
+                    value: /((0?9)|(\+?989))\d{9}/g,
+                    message: "enter the valid phone number",
+                  },
+                })}
+              />
+            </label>
+            {errors.phone?.message && (
+              <p className="mt-2 text-xs text-red-500 ltr:text-left rtl:text-right">
+                {t(errors.phone.message)}
+              </p>
+            )}
+            <ButtonPrimary className="w-full mt-6 lg:mt-8" type="submit">
+              {t("text-continue")}
+            </ButtonPrimary>
+          </form>
+        </div>
       </div>
     </div>
   )

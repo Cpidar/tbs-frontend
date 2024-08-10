@@ -18,29 +18,29 @@ const DEMO_DATA = [
     id: 1,
     img: HIW1img,
     imgDark: HIW1img,
-    title: "Filter & Discover",
-    desc: "Smart filtering and suggestions make it easy to find",
+    title: "جستجوی پیشرفته",
+    desc: "با جستجوی پیشرفته و پیشنهادات محصول مدنظر خود را به آسانی پیدا کنید",
   },
   {
     id: 2,
     img: HIW2img,
     imgDark: HIW2img,
-    title: "Add to bag",
-    desc: "Easily select the correct items and add them to the cart",
+    title: "اضافه کردن به سبد خرید",
+    desc: "به راحتی اقلام مدنظر را انتخاب کرده و به سبد خرید اضافه کنید",
   },
   {
     id: 3,
     img: HIW3img,
     imgDark: HIW3img,
-    title: "Fast shipping",
-    desc: "The carrier will confirm and ship quickly to you",
+    title: "ارسال سریع",
+    desc: "کالای مدنظر شما در سریع ترین زمان و کمترین برای شما ارسال می شود",
   },
   {
     id: 4,
     img: HIW4img,
     imgDark: HIW4img,
-    title: "Enjoy the product",
-    desc: "Have fun and enjoy your 5-star quality products",
+    title: "امتیاز بدهید",
+    desc: "نظر شما برای ما ارزشمند است! با امتیاز دادن به این کالا، به دیگران کمک کنید تا بهترین انتخاب را داشته باشند",
   },
 ];
 
@@ -70,7 +70,7 @@ const SectionHowItWork: FC<SectionHowItWorkProps> = ({
             />
             <div className="text-center mt-auto space-y-5">
               <Badge
-                name={`Step ${index + 1}`}
+                name={`گام ${index + 1}`}
                 color={
                   !index
                     ? "red"

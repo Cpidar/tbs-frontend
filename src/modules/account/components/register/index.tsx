@@ -8,7 +8,9 @@ import { signUp } from "@modules/account/actions"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-
+import Image from "next/image"
+import logo from "@/images/logo.svg"
+import { ArrowRightIcon } from "@heroicons/react/24/solid"
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
   phone: string
@@ -26,17 +28,23 @@ const Register = ({ setCurrentView, phone }: Props) => {
   const [message, formAction] = useFormState(onFormAction, null)
 
   return (
-    <div
-      className="max-w-sm flex flex-col items-center"
-      data-testid="register-page"
-    >
-      <h1 className="text-large-semi uppercase mb-6">
-        Become a Medusa Store Member
-      </h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-4">
-        Create your Medusa Store Member profile, and get access to an enhanced
-        shopping experience.
-      </p>
+    <div className="nc-PageLogin mb-8 p-5 lg:mb-10 flex flex-col items-center lg:justify-center">
+      <div className="w-full relative flex items-center justify-center">
+        <div className="flex right-0 text-neutral-700 transition-all duration-300 ease-out cursor-pointer fixed lg:absolute">
+          <ArrowRightIcon />
+        </div>
+        <Image
+          className="mx-auto h-10 w-auto"
+          src={logo}
+          width={200}
+          height={200}
+          alt="Your Company"
+        />
+      </div>
+      <div className="w-full mx-auto space-y-6">
+        <h1 className="text-h4 text-neutral-900 text-right w-full mt-6">
+          مشخصات خود را وارد نمایید
+        </h1>
       <form className="w-full flex flex-col" action={formAction}>
         <div className="flex flex-col w-full gap-y-2">
           <Input
@@ -103,6 +111,7 @@ const Register = ({ setCurrentView, phone }: Props) => {
         </button>
         .
       </span>
+      </div>
     </div>
   )
 }

@@ -45,7 +45,7 @@ const getCollectionsWithProducts = cache(
   async (
     countryCode: string
   ): Promise<ProductCollectionWithPreviews[] | null> => {
-    const { collections } = await getCollectionsList(0, 3)
+    const { collections } = await getCollectionsList(0, 8)
 
     if (!collections) {
       return null
@@ -109,7 +109,7 @@ export default async function Home({
         <div className="container relative space-y-24 my-24 lg:space-y-32 lg:my-32">
           <SectionSliderCategories />
 
-          <SectionSliderProductCard>
+          <SectionSliderProductCard heading={collections[0].title}>
             {collections[0] &&
               collections[0]?.products.map((item, index) => (
                 <li key={index} className="glide__slide">
@@ -118,7 +118,7 @@ export default async function Home({
               ))}
           </SectionSliderProductCard>
 
-          <SectionPromo1 />
+          <SectionPromo1 className="bg-gray-50" />
           {/* 
         <div className="relative py-24 lg:py-32">
           <BackgroundSection />
@@ -126,7 +126,7 @@ export default async function Home({
         </div> */}
 
           <SectionSliderProductCard
-            heading="پر فروشترین کالاها"
+            heading={collections[1].title}
             subHeading=""
           >
             {collections[1].products.map((item, index) => (
@@ -137,21 +137,40 @@ export default async function Home({
           </SectionSliderProductCard>
 
           <SectionSliderProductCard
-            heading="پبشترین فروش"
-            subHeading="در ماه"
+            heading={collections[2].title}
           >
-            {collections[1].products.map((item, index) => (
+            {collections[2].products.map((item, index) => (
               <li key={index} className="glide__slide">
                 <ProductCard productPreview={item} region={region} />
               </li>
             ))}
           </SectionSliderProductCard>
 
-          {/* <SectionPromo2 /> */}
+          <SectionSliderProductCard
+            heading={collections[3].title}
+          >
+            {collections[3].products.map((item, index) => (
+              <li key={index} className="glide__slide">
+                <ProductCard productPreview={item} region={region} />
+              </li>
+            ))}
+          </SectionSliderProductCard>
+
+          <SectionPromo2 />
 
           {/* <SectionSliderLargeProduct cardStyle="style1" /> */}
 
           {/* <SectionGridFeatureItems /> */}
+
+          <SectionSliderProductCard
+            heading={collections[3].title}
+          >
+            {collections[3].products.map((item, index) => (
+              <li key={index} className="glide__slide">
+                <ProductCard productPreview={item} region={region} />
+              </li>
+            ))}
+          </SectionSliderProductCard>
 
           <div className="relative py-24 lg:py-32">
             <BackgroundSection />

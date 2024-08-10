@@ -1,4 +1,11 @@
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react"
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 
 import NativeSelect, {
   NativeSelectProps,
@@ -17,19 +24,24 @@ const CitySelect = forwardRef<
     () => innerRef.current
   )
 
-  const [data, setData] = useState<[{id: string; name: string; slug: string}]>()
+  const [data, setData] =
+    useState<[{ id: string; name: string; slug: string }]>()
   const [isLoading, setLoading] = useState(true)
- 
+
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/provinces/${provinceId}`)
-      .then((res) => res.json())
-      .then((data) => data?.provinces[0]?.cities)
-      .then((data) => {
-        setData(data)
-        setLoading(false)
-      })
+    if (provinceId) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/provinces/${provinceId}`
+      )
+        .then((res) => res.json())
+        .then((data) => data?.provinces[0]?.cities)
+        .then((data) => {
+          setData(data)
+          setLoading(false)
+        })
+    }
   }, [provinceId])
-console.log(data)
+  console.log(data)
   const citiesOptions = useMemo(() => {
     if (!data) {
       return []

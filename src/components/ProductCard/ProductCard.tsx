@@ -12,6 +12,7 @@ import { RenderGroupButtons } from "./RenderGroupButtons"
 import { retrievePricedProductById } from "@lib/data"
 import { transformMedusaProduct } from "@/utils/data-mappers"
 import PlaceholderImage from "@/images/placeholders/product-placeholder.png"
+import { stripHtmlTag } from "@/utils/StripHtmlTag"
 
 export interface ProductCardProps {
   className?: string
@@ -56,6 +57,7 @@ const ProductCard = async ({
     variants
   } = data
 
+  const StripOffDesc = stripHtmlTag(description)
   return (
     <>
       <div
@@ -90,7 +92,7 @@ const ProductCard = async ({
               {name}
             </h2>
             <p className={`text-sm text-slate-500 dark:text-slate-400 mt-1 `}>
-              {description}
+              {StripOffDesc}
             </p>
           </div>
 

@@ -6,7 +6,9 @@ import ButtonPrimary from "@/shared/Button/ButtonPrimary"
 import { LOGIN_VIEW, Step } from "@/modules/account/templates/login-template"
 import { useTranslation } from "react-i18next"
 import { SubmitHandler, useForm } from "react-hook-form"
-
+import Image from "next/image"
+import logo from "@/images/logo.svg"
+import { ArrowRightIcon } from "@heroicons/react/24/solid"
 type Props = {
   setCurrentView: (view: LOGIN_VIEW) => void
   setToken: (token: string) => void
@@ -134,26 +136,35 @@ const PageLogin = ({
   }
 
   return (
-    <div
-      className={`nc-PageLogin max-w-sm w-full mb-24 lg:mb-32 flex flex-col items-center`}
-      data-nc-id="PageLogin"
-    >
-      <h2 className="my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 justify-center">
-        {t("text-login")}
-      </h2>
+    <div className="nc-PageLogin mb-8 p-5 lg:mb-10 flex flex-col items-center lg:justify-center">
+      <div className="w-full relative flex items-center justify-center">
+        <div className="flex right-0 text-neutral-700 transition-all duration-300 ease-out cursor-pointer fixed lg:absolute">
+          <ArrowRightIcon />
+        </div>
+        <Image
+          className="mx-auto h-10 w-auto"
+          src={logo}
+          width={200}
+          height={200}
+          alt="Your Company"
+        />
+      </div>
       <div className="w-full mx-auto space-y-6">
-        <span className="block text-sm mt-4 text-neutral-700 sm:text-base dark:text-neutral-200">
-          {message}
-        </span>
+        <h1 className="text-h4 text-neutral-900 text-right w-full mt-6">
+          کد تایید را وارد کنید
+        </h1>
+        <p className="text-xs text-neutral-700 my-4 text-right w-full">{`حساب کاربری با شماره موبایل
+        ${phone}
+        وجود ندارد. برای ساخت حساب جدید، کد تایید برای این شماره ارسال گردید.`}</p>
         {/* FORM */}
         <form
           className="grid grid-cols-1 gap-6"
           onSubmit={handleSubmit(onSubmit)}
         >
           <label className="block">
-            <span className="text-neutral-800 dark:text-neutral-200">
+            {/* <span className="text-neutral-800 dark:text-neutral-200">
               {t("text-otp-code")}
-            </span>
+            </span> */}
             <Input
               type="number"
               // placeholder="example@example.com"
@@ -183,13 +194,13 @@ const PageLogin = ({
             </p>
           ) : (
             <span>
-              <span>Didt recieve code? </span>
+              <span>دریافت مجدد کد از طریق </span>
               <button
                 className="text-blue-600"
                 disabled={seconds > 0 || minutes > 0}
                 onClick={resendOTP}
               >
-                Resend OTP
+                پیامک
               </button>
             </span>
           )}

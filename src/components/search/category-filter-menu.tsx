@@ -26,7 +26,7 @@ function CategoryFilterMenuItem({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const selectedCategories = searchParams.getAll("category_id")
-
+  
   const isActive =
     checkIsActive(selectedCategories, item.handle) ||
     item?.category_children?.some((_item: any) =>
