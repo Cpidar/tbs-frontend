@@ -9,7 +9,7 @@ const IRANSans = localFont({
             weight: '200'
         },
         {
-            path: './font/IRANSansWeb-FaNum-Light.woff2',
+            path: './font/IranSansWeb-FaNum-Light.woff2',
             style: 'normal',
             weight: '300'
         },
