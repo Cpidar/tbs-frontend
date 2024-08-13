@@ -178,7 +178,7 @@ export default function CartDropdown({
                   {totalItems}
                 </div>
                 <svg
-                  className="h-9 lg:h-10 p-2 text-gray-500"
+                  className="svg-inline--fa fa-shopping-cart fa-w-18 fa-9x h-9 lg:h-10 p-2 text-gray-500"
                   aria-hidden="true"
                   focusable="false"
                   data-prefix="far"
@@ -186,7 +186,6 @@ export default function CartDropdown({
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512"
-                  class="svg-inline--fa fa-shopping-cart fa-w-18 fa-9x"
                 >
                   <path
                     fill="currentColor"

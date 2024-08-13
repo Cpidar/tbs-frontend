@@ -11,6 +11,7 @@ const MyImage: FC<Props> = (props) => {
         props.src ? "" : "dark:filter dark:brightness-75"
       }`}
       src={props.src || "/images/placeholder.png"}
+      alt=""
     />
   );
 };

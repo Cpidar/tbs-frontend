@@ -4,6 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 type HighlightedBarProps = {
   onClose?: (e: React.SyntheticEvent) => void;
   variant?: "dark" | "primary" | "highlighted" | "highlightedTwo";
+  children: React.ReactNode
   className?: string;
 };
 

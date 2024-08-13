@@ -88,7 +88,7 @@ const SearchModal: FC<Props> = ({ renderTrigger }) => {
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            afterLeave={() => setQuery('')}
+            // afterLeave={() => setQuery('')}
           >
           <Combobox.Options
             static

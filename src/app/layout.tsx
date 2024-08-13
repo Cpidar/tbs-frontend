@@ -3,13 +3,9 @@ import "@/styles/globals.css"
 import "@/fonts/line-awesome-1.3.0/css/line-awesome.css"
 import "@/styles/index.scss"
 import "rc-slider/assets/index.css"
-import Footer from "@/shared/Footer/Footer"
-import SiteHeader from "@/app/SiteHeader"
 import { Metadata } from "next"
-import Header from "@/components/Header/Header"
-import HeaderLogged from "@/components/Header/HeaderLogged"
 import HolyLoader from "holy-loader"
-import { IRANSans } from '@/styles/font'
+import { IRANSans } from "@/styles/font"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,12 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="rtl" className={IRANSans.variable}>
-      <HolyLoader
-        color="#ff4500"
-N        speed={250}
-        easing="linear"
-        showSpinner
-      />
+      <HolyLoader color="#ff4500" speed={250} easing="linear" showSpinner />
       <body className="bg-white text-base dark:bg-neutral-900 text-neutral-900 dark:text-neutral-200">
         {props.children}
       </body>

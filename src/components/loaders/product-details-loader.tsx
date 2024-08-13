@@ -1,7 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-const AmazonLoader = (props) => {
+const AmazonLoader = (props: any) => {
   return (
     <ContentLoader
       rtl

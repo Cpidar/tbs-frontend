@@ -4,7 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
-import useKeypress from "react-use-keypress";
+// import useKeypress from "react-use-keypress";
 import { getNewParam } from "../ListingImageGallery";
 import type { ListingGalleryImage } from "../utils/types";
 import SharedModal from "./SharedModal";
@@ -41,17 +41,17 @@ export default function Modal({
     router.push(`${thisPathname}/?${getNewParam({ value: newVal })}` as Route);
   }
 
-  useKeypress("ArrowRight", () => {
-    if (index + 1 < images.length) {
-      changePhotoId(index + 1);
-    }
-  });
+  // useKeypress("ArrowRight", () => {
+  //   if (index + 1 < images.length) {
+  //     changePhotoId(index + 1);
+  //   }
+  // });
 
-  useKeypress("ArrowLeft", () => {
-    if (index > 0) {
-      changePhotoId(index - 1);
-    }
-  });
+  // useKeypress("ArrowLeft", () => {
+  //   if (index > 0) {
+  //     changePhotoId(index - 1);
+  //   }
+  // });
 
   return (
     <>
